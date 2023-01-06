@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "963587294523",
+    "firebase_url": "https://data-base-project-438e3-default-rtdb.firebaseio.com",
+    "project_id": "data-base-project-438e3",
+    "storage_bucket": "data-base-project-438e3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:963587294523:android:af99622d5a5fae8485231e",
+        "android_client_info": {
+          "package_name": "com.example.findyourpair"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "963587294523-qa656qkur5j2l3mt8jn4v0j9o3cndqdh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC02jkY5a50HN7oZI4xZejXI0FD1FPCIjE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "963587294523-qa656qkur5j2l3mt8jn4v0j9o3cndqdh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
