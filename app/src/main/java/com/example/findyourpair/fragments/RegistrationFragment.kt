@@ -37,21 +37,21 @@ class RegistrationFragment:Fragment(R.layout.fragment_registration){
         btRegister = view.findViewById(R.id.btRegister)
         tvToLogin = view.findViewById(R.id.tvToLogin)
         etUsername = view.findViewById(R.id.etUsername)
-        rgGender = view.findViewById(R.id.rgGender)
 
         btRegister.setOnClickListener {
-            val selectedId = rgGender.checkedRadioButtonId
-            val radioButton = view.findViewById<RadioButton>(selectedId)
+
             val email = etEmail.editText?.text.toString()
             val password = etPassword.editText?.text.toString()
             val confirmPassword = etConfirmPassword.editText?.text.toString()
             val username = etUsername.editText?.text.toString()
 
 
-            if (email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || radioButton.text == null) {
+            if (email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+
                 Toast.makeText(context, "Password and Email shouldn't be empty!", Toast.LENGTH_LONG)
                     .show()
                 return@setOnClickListener
+
             } else if (password != confirmPassword) {
                 Toast.makeText(context, "Type password correctly", Toast.LENGTH_LONG).show()
             } else if (username.length >= 11) {
@@ -60,33 +60,30 @@ class RegistrationFragment:Fragment(R.layout.fragment_registration){
                 Toast.makeText(context, "Username is too short", Toast.LENGTH_LONG).show()
             } else if (password.length <= 8) {
                 Toast.makeText(context, "Password is too short", Toast.LENGTH_LONG).show()
-            } else if (!password.any { it.isDigit() }){
+            } else if (!(password.any { it.isDigit() }) ){
                 Toast.makeText(context, "Password must have at least one digit", Toast.LENGTH_LONG).show()
-            }
+            } else {
 
-            FirebaseAuth.getInstance()
-                .createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        /*FirebaseAuth.getInstance().currentUser?.sendEmailVerification()
-                            ?.addOnSuccessListener {*/
+                FirebaseAuth.getInstance()
+                    .createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            /*FirebaseAuth.getInstance().currentUser?.sendEmailVerification()
+                                ?.addOnSuccessListener {*/
 
-                                val PersonInfo = PersonInfo(username, email)
 
-                                personInfo.child(radioButton.text.toString())
-                                    .child(auth.currentUser?.uid!!)
-                                    .child("name")
-                                    .setValue(PersonInfo)
+                                    personInfo.child(auth.currentUser?.uid!!).setValue(username,email)
 
-                                RegistrationFragmentDirections.actionRegistrationFragmentToMainAppFragment().also {
-                                    findNavController().navigate(it)
-                                }
-                            //}
+                                    RegistrationFragmentDirections.actionRegistrationFragmentToMainAppFragment().also {
+                                        findNavController().navigate(it)
+                                    }
+                                //}
+                        }
                     }
-                }
-                .addOnFailureListener {
-                    Toast.makeText(context, "Something went wrong, try again later", Toast.LENGTH_LONG).show()
-                }
+                    .addOnFailureListener {
+                        Toast.makeText(context, "Something went wrong, try again later", Toast.LENGTH_LONG).show()
+                    }
+            }
         }
         tvToLogin.setOnClickListener {
 

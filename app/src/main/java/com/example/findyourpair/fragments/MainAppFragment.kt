@@ -4,31 +4,30 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.widget.ViewPager2
 import com.example.findyourpair.R
-import com.example.findyourpair.R.id
 import com.example.findyourpair.adapters.ViewPagerFragmentAdapter
-import com.example.findyourpair.databinding.FragmentMainAppBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
-class MainAppFragment:Fragment() {
+class MainAppFragment:Fragment(R.layout.fragment_main_app) {
 
-    private var _binding : FragmentMainAppBinding ? = null
-    private val binding get() = _binding!!
+    private lateinit var viewPager2: ViewPager2
+    private lateinit var appBar: Toolbar
+    private lateinit var bottomNavigation: BottomNavigationView
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        _binding = FragmentMainAppBinding.inflate(inflater, container, false)
-        val view = binding.root
-
-
+        val view = inflater.inflate(R.layout.fragment_main_app, container, false)
 
         val fragmentList = arrayListOf<Fragment>(FavouritesFragment(), ChatFragment(), ProfileFragment(), SettingsFragment())
-
         val adapter = ViewPagerFragmentAdapter(fragmentList, requireActivity().supportFragmentManager, lifecycle)
 
         return view
@@ -38,8 +37,12 @@ class MainAppFragment:Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        binding.appBar.inflateMenu(R.menu.settings_menu)
-        binding.appBar.setOnMenuItemClickListener {
+        viewPager2 = view.findViewById(R.id.viewPager2)
+        bottomNavigation = view.findViewById(R.id.bottomNavigation)
+        appBar = view.findViewById(R.id.app_bar)
+
+        appBar.inflateMenu(R.menu.settings_menu)
+        appBar.setOnMenuItemClickListener {
             if(it.itemId == R.id.settings){
                 MainAppFragmentDirections.actionMainAppFragmentToSettingsFragment().also { nav ->
                     findNavController().navigate(nav)
@@ -50,27 +53,18 @@ class MainAppFragment:Fragment() {
             }
         }
 
-        binding.bottomNavigation.setOnItemSelectedListener { item ->
+        bottomNavigation.setOnItemSelectedListener { item ->
             when(item.itemId){
                 R.id.favourites -> {
-                    binding.viewPager2.currentItem = 0
+                    viewPager2.currentItem = 0
                     return@setOnItemSelectedListener true
                 }
                 R.id.chat -> {
-                    binding.viewPager2.currentItem = 1
-                    return@setOnItemSelectedListener true
-                }
-                R.id.profile ->{
-                    binding.viewPager2.currentItem = 2
+                    viewPager2.currentItem = 1
                     return@setOnItemSelectedListener true
                 }
             }
             false
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }
