@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="8dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/name_response"
+        android:layout_height="wrap_content"
+        android:text="name"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="45dp"
+        />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#6D3668AF"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="17dp"
+        android:forceDarkAllowed="false"
+        android:layout_marginBottom="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:maxWidth="250dp"
+            android:layout_height="wrap_content"
+            android:maxHeight="50dp"
+            android:text="this is sent message"
+            android:textSize="18sp"
+            android:padding="10dp"
+            android:maxLines="1"
+            android:id="@+id/txt_sent_recres"
+            android:textColor="@color/white"
+            android:forceDarkAllowed="false"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/linearShec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="50dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:maxWidth="250dp"
+            android:layout_height="wrap_content"
+            android:text="this is received message"
+            android:textSize="18sp"
+            android:padding="10dp"
+            android:id="@+id/txt_received_recres"/>
+    </RelativeLayout>
+
+</RelativeLayout>
