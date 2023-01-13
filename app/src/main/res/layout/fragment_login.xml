@@ -9,7 +9,7 @@
     <TextView
         android:textSize="50sp"
         android:textColor="@color/purple"
-        android:text="Find Your Pair"
+        android:text="Uni Crush"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"

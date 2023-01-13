@@ -3,14 +3,11 @@ package com.example.findyourpair.fragments
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.RadioButton
-import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.findyourpair.R
-import com.example.findyourpair.data.PersonInfo
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -20,10 +17,11 @@ class RegistrationFragment:Fragment(R.layout.fragment_registration){
     private lateinit var etEmail: TextInputLayout
     private lateinit var etPassword:TextInputLayout
     private lateinit var etConfirmPassword:TextInputLayout
+    private lateinit var etAge:TextInputLayout
+    private lateinit var etUni:TextInputLayout
     private lateinit var btRegister: Button
     private lateinit var tvToLogin: TextView
     private lateinit var etUsername: TextInputLayout
-    private lateinit var rgGender:RadioGroup
 
     private var auth  = FirebaseAuth.getInstance()
     private var personInfo = FirebaseDatabase.getInstance().getReference("User-Info")
@@ -34,6 +32,8 @@ class RegistrationFragment:Fragment(R.layout.fragment_registration){
         etEmail = view.findViewById(R.id.etEmail)
         etPassword = view.findViewById(R.id.etPassword)
         etConfirmPassword = view.findViewById(R.id.etConfirmPassword)
+        etAge = view.findViewById(R.id.etAge)
+        etUni = view.findViewById(R.id.etUni)
         btRegister = view.findViewById(R.id.btRegister)
         tvToLogin = view.findViewById(R.id.tvToLogin)
         etUsername = view.findViewById(R.id.etUsername)
@@ -44,6 +44,8 @@ class RegistrationFragment:Fragment(R.layout.fragment_registration){
             val password = etPassword.editText?.text.toString()
             val confirmPassword = etConfirmPassword.editText?.text.toString()
             val username = etUsername.editText?.text.toString()
+            val age = etAge.editText?.text.toString()
+            val uni = etUni.editText?.text.toString()
 
 
             if (email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
@@ -58,7 +60,9 @@ class RegistrationFragment:Fragment(R.layout.fragment_registration){
                 Toast.makeText(context, "Username is too long", Toast.LENGTH_LONG).show()
             } else if (username.length <= 2) {
                 Toast.makeText(context, "Username is too short", Toast.LENGTH_LONG).show()
-            } else if (password.length <= 8) {
+            }else if(uni.any{ it.isDigit() }){
+                Toast.makeText(context, "University should not contain any digits", Toast.LENGTH_SHORT).show()
+            }else if (password.length <= 8) {
                 Toast.makeText(context, "Password is too short", Toast.LENGTH_LONG).show()
             } else if (!(password.any { it.isDigit() }) ){
                 Toast.makeText(context, "Password must have at least one digit", Toast.LENGTH_LONG).show()
@@ -71,10 +75,11 @@ class RegistrationFragment:Fragment(R.layout.fragment_registration){
                             /*FirebaseAuth.getInstance().currentUser?.sendEmailVerification()
                                 ?.addOnSuccessListener {*/
 
-
-                                    personInfo.child(auth.currentUser?.uid!!).setValue(username,email)
-
-                                    RegistrationFragmentDirections.actionRegistrationFragmentToMainAppFragment().also {
+                                    personInfo.child(auth.currentUser?.uid!!).child("name").setValue(username)
+                                    personInfo.child(auth.currentUser?.uid!!).child("email").setValue(email)
+                                    personInfo.child(auth.currentUser?.uid!!).child("age").setValue(age)
+                                    personInfo.child(auth.currentUser?.uid!!).child("uni").setValue(uni)
+                                    RegistrationFragmentDirections.actionRegistrationFragmentToUserPhotoFragment().also {
                                         findNavController().navigate(it)
                                     }
                                 //}

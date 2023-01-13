@@ -10,7 +10,7 @@ import com.example.findyourpair.R
 import com.example.findyourpair.adapters.ViewPagerFragmentAdapter
 import com.example.findyourpair.databinding.FragmentMainAppBinding
 
-class MainAppFragment:Fragment(R.layout.fragment_main_app) {
+class MainAppFragment:Fragment() {
 
     private var _binding: FragmentMainAppBinding? = null
     private val binding get() = _binding!!
@@ -61,5 +61,10 @@ class MainAppFragment:Fragment(R.layout.fragment_main_app) {
                 false
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

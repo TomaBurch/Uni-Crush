@@ -17,7 +17,7 @@ class MessageAdapter(val context: Context,private val messageList: ArrayList<Mes
     private val ITEM_RESPONSE = 3
     private val ITEM_RESPONSE_RECEIVE = 4
 
-    private lateinit var mlistener: OnItemClickListener
+    private lateinit var messageListener: OnItemClickListener
     private lateinit var messageKeyList: ArrayList<String>
 
     interface OnItemClickListener {
@@ -25,7 +25,7 @@ class MessageAdapter(val context: Context,private val messageList: ArrayList<Mes
     }
 
     fun setOnItemClickListener(listener: OnItemClickListener) {
-        mlistener = listener
+        messageListener = listener
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
