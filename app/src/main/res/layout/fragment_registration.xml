@@ -5,11 +5,34 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:srcCompat="@drawable/wave" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="128dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/wave_2" />
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="32dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -19,9 +42,9 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etUsername"
-            app:boxBackgroundMode="none"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:boxBackgroundMode="none">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -39,10 +62,10 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/etAge"
-                android:layout_weight="1"
-                app:boxBackgroundMode="none"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:boxBackgroundMode="none">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -55,10 +78,10 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/etUni"
-                android:layout_weight="1"
-                app:boxBackgroundMode="none"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:boxBackgroundMode="none">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -75,8 +98,8 @@
             android:id="@+id/rgGender"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/Male"
@@ -94,9 +117,9 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etEmail"
-            app:boxBackgroundMode="none"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:boxBackgroundMode="none">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -109,9 +132,9 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etPassword"
-            app:boxBackgroundMode="none"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:boxBackgroundMode="none">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -124,9 +147,9 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etConfirmPassword"
-            app:boxBackgroundMode="none"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:boxBackgroundMode="none">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -146,7 +169,7 @@
             android:gravity="center"
             android:text="Register"
             android:textColor="@color/white"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/tvToLogin"
@@ -155,6 +178,7 @@
             android:gravity="center"
             android:text="Already have an account"
             android:textColor="@color/purple"
+            android:textSize="16sp"
             android:textStyle="italic" />
 
     </LinearLayout>
@@ -163,9 +187,11 @@
         android:id="@+id/tvRegistration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/purple"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/draftside"
         android:text="Registration"
-        android:textSize="50sp"
+        android:textColor="@color/black"
+        android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
