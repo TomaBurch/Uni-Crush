@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.findyourpair.Message
+import com.example.findyourpair.data.Message
 import com.example.findyourpair.R
 import com.google.firebase.auth.FirebaseAuth
 
@@ -17,34 +17,35 @@ class MessageAdapter(val context: Context,private val messageList: ArrayList<Mes
     private val ITEM_RESPONSE = 3
     private val ITEM_RESPONSE_RECEIVE = 4
 
-    private lateinit var messageListener: OnItemClickListener
+    private lateinit var messageListener: onItemClickListener
     private lateinit var messageKeyList: ArrayList<String>
 
-    interface OnItemClickListener {
+    interface onItemClickListener {
         fun onItemClick(position: Int): String?
     }
 
-    fun setOnItemClickListener(listener: OnItemClickListener) {
+    fun setOnItemClickListener(listener: onItemClickListener) {
         messageListener = listener
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             1 -> {
                 val view: View = LayoutInflater.from(context).inflate(R.layout.receive, parent, false)
-                ReceiveViewHolder(view)
+                ReceiveViewHolder(view, messageListener)
             }
             2 -> {
                 val view: View = LayoutInflater.from(context).inflate(R.layout.sent, parent, false)
-                SentViewHolder(view)
+                SentViewHolder(view, messageListener)
             }
             3 -> {
                 val view: View = LayoutInflater.from(context).inflate(R.layout.response, parent, false)
-                SentResponseViewHolder(view)
+                SentResponseViewHolder(view, messageListener)
             }
             else -> {
                 val view: View =
                     LayoutInflater.from(context).inflate(R.layout.responce_received, parent, false)
-                ReceiveResponseViewHolder(view)
+                ReceiveResponseViewHolder(view, messageListener)
             }
         }
     }
@@ -94,24 +95,48 @@ class MessageAdapter(val context: Context,private val messageList: ArrayList<Mes
         }
     }
 
-    class SentResponseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class SentResponseViewHolder(itemView: View, listener: onItemClickListener) : RecyclerView.ViewHolder(itemView) {
         val sentMessage = itemView.findViewById<TextView>(R.id.txt_sent_response)
         val responseToMsg = itemView.findViewById<TextView>(R.id.txt_recceived_response)
 
+        init {
+            itemView.setOnClickListener {
+                listener.onItemClick(adapterPosition)
+            }
+        }
+
     }
-    class SentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class SentViewHolder(itemView: View, listener: onItemClickListener) : RecyclerView.ViewHolder(itemView) {
         val sentMessage = itemView.findViewById<TextView>(R.id.txt_sent)
+
+        init {
+            itemView.setOnClickListener {
+                listener.onItemClick(adapterPosition)
+            }
+        }
     }
 
-    class ReceiveViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ReceiveViewHolder(itemView: View, listener: onItemClickListener) : RecyclerView.ViewHolder(itemView) {
         val receiveMessage = itemView.findViewById<TextView>(R.id.txt_received)
         val name = itemView.findViewById<TextView>(R.id.name)
+
+        init {
+            itemView.setOnClickListener {
+                listener.onItemClick(adapterPosition)
+            }
+        }
     }
 
-    class ReceiveResponseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ReceiveResponseViewHolder(itemView: View, listener: onItemClickListener) : RecyclerView.ViewHolder(itemView) {
         val receiveMessage = itemView.findViewById<TextView>(R.id.txt_received_recres)
         val name = itemView.findViewById<TextView>(R.id.name_response)
         var respondingToMsg = itemView.findViewById<TextView>(R.id.txt_sent_recres)
+
+        init {
+            itemView.setOnClickListener {
+                listener.onItemClick(adapterPosition)
+            }
+        }
     }
 
     override fun getItemCount(): Int {

@@ -1,10 +1,10 @@
-package com.example.findyourpair
+package com.example.findyourpair.data
 
 class Message(
     var message: String?,
     var senderId: String?,
     var sendername: String?,
-    var responseText: String
+    responseText: String
 ) {
 
     var responsetext:String? = responseText

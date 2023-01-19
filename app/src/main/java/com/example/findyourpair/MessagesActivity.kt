@@ -12,6 +12,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.findyourpair.adapters.MessageAdapter
+import com.example.findyourpair.data.Message
 import com.example.findyourpair.databinding.ActivityMessagesBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -28,7 +29,7 @@ class MessagesActivity : AppCompatActivity() {
     private lateinit var messageKeyList: ArrayList<String>
     private lateinit var messageAdapter: MessageAdapter
 
-    private val db = FirebaseDatabase.getInstance().getReference("Chat")
+    private val db = FirebaseDatabase.getInstance().getReference("User-Info")
     private val senderUid = FirebaseAuth.getInstance().currentUser?.uid!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,7 +86,7 @@ class MessagesActivity : AppCompatActivity() {
 
         var responseMessage = ""
 
-        messageAdapter.setOnItemClickListener(object : MessageAdapter.OnItemClickListener {
+        messageAdapter.setOnItemClickListener(object : MessageAdapter.onItemClickListener {
             override fun onItemClick(position: Int): String {
                 responseMessage = messageList[position].message.toString()
                 responseLayout.visibility = View.VISIBLE
@@ -104,7 +105,7 @@ class MessagesActivity : AppCompatActivity() {
             val message = messagebox.text.toString()
             var name: String
             if (message != "") {
-                FirebaseDatabase.getInstance().getReference("user").child(senderUid).get()
+                FirebaseDatabase.getInstance().getReference("User-Info").child(senderUid).get()
                     .addOnSuccessListener {
                         if (it.exists()) {
                             val username = it.child("name").value
@@ -112,7 +113,7 @@ class MessagesActivity : AppCompatActivity() {
 
                             val messageObject = Message(message, senderUid, name, responseMessage)
 
-                            db.child("chat").child("messages").push()
+                            db.child("messages").push()
                                 .setValue(messageObject)
                             messagebox.setText("")
                             responseMessage = ""

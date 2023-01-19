@@ -1,9 +1,11 @@
 package com.example.findyourpair.data
 
+
 data class PersonInfo(
-    val username:String,
-    val age:Int,
-    val uni:String,
-    val email:String,
-    val imageUrl:String
-)
+     var username: String,
+     var age: String,
+     var uni: String,
+     var userId: String,
+     var imageUrl: String
+     )
+
