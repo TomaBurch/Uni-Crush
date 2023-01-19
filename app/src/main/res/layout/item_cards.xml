@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
 
     <ImageView
         android:id="@+id/iwUserPhoto"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         tools:srcCompat="@tools:sample/avatars" />
 
     <LinearLayout
@@ -30,25 +30,27 @@
 
         <ImageView
             android:id="@+id/iwNo"
-            android:layout_width="wrap_content"
-            android:layout_height="70dp"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/ic_baseline_clear_24"
-            android:background="#FF0000"/>
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            android:layout_marginStart="61dp"
+            android:layout_marginBottom="37dp"
+            android:background="@drawable/circle2"
+            app:srcCompat="@drawable/ic_baseline_clear_24" />
 
         <ImageView
             android:id="@+id/iwYes"
-            android:layout_width="wrap_content"
-            android:layout_height="70dp"
-            android:layout_weight="1"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            android:layout_marginLeft="110dp"
             app:srcCompat="@drawable/ic_baseline_check_24"
-            android:background="#1EB314"/>
+            android:background="@drawable/circle"/>
     </LinearLayout>
 
     <TextView
         android:id="@+id/tvUsernameItems"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
         android:text="asdasdadasd"
         android:textSize="27sp"
         app:layout_constraintBottom_toBottomOf="@+id/iwUserPhoto"
