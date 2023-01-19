@@ -50,6 +50,7 @@
             android:layout_height="wrap_content"
             android:text="this is received message"
             android:textSize="18sp"
+            android:background="@drawable/chat_recive"
             android:padding="10dp"
             android:id="@+id/txt_received_recres"/>
     </RelativeLayout>
