@@ -14,9 +14,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:maxWidth="250dp"
+            android:background="@drawable/chat_recive"
             android:layout_height="wrap_content"
             android:maxHeight="50dp"
             android:text="this is received message"
+            android:textColor="#B5B1B1"
             android:textSize="18sp"
             android:padding="10dp"
             android:maxLines="1"
@@ -38,10 +40,12 @@
             android:maxWidth="250dp"
             android:layout_height="wrap_content"
             android:text="this is sent message"
+
+            android:background="@drawable/custom_button"
             android:textSize="18sp"
             android:padding="10dp"
             android:id="@+id/txt_sent_response"
-            android:textColor="@color/white"
+            android:textColor="#FFFFFF"
             android:forceDarkAllowed="false"/>
     </RelativeLayout>
 
